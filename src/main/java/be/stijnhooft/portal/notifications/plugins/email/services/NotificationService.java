@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.inject.Inject;
 import java.util.Collection;
 
-/*TODO: test http://dolszewski.com/spring/sending-html-mail-with-spring-boot-and-thymeleaf/ */
 @Service
 @Transactional
 @Slf4j

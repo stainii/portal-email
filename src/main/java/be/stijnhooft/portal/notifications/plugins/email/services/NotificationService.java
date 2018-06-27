@@ -2,6 +2,7 @@ package be.stijnhooft.portal.notifications.plugins.email.services;
 
 import be.stijnhooft.portal.notifications.model.Notification;
 import be.stijnhooft.portal.notifications.plugins.email.routes.NotificationRoute;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import java.util.Collection;
 /*TODO: test http://dolszewski.com/spring/sending-html-mail-with-spring-boot-and-thymeleaf/ */
 @Service
 @Transactional
+@Slf4j
 public class NotificationService {
 
     private final MailBuilder mailBuilder;
@@ -30,6 +32,9 @@ public class NotificationService {
     public void receiveNotificationsAndSendMail(Collection<Notification> notifications) {
         MimeMessagePreparator mail = mailBuilder.build(notifications);
         mailSender.send(mail);
+
+        log.info("Sent mail for " + notifications.size() + " notifications.");
+        log.debug(notifications.toString());
     }
 
 }

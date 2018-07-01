@@ -8,10 +8,14 @@ import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.jackson.JacksonDataFormat;
 import org.apache.camel.component.jackson.ListJacksonDataFormat;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
 public class NotificationRoute extends RouteBuilder {
+
+    @Value("${notifications.route.from}")
+    private String fromRoute;
 
     @Override
     public void configure() throws Exception {
@@ -21,9 +25,10 @@ public class NotificationRoute extends RouteBuilder {
         formatForListOfNotifications.addModule(new JavaTimeModule());
         formatForListOfNotifications.disableFeature(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-        from("activemq:topic:NotificationTopic?timeToLive=3600000")
+        from(fromRoute)
             .unmarshal(formatForListOfNotifications)
-            .to("bean:notificationService?method=receiveNotificationsAndSendMail(${body})");
+            .to("bean:notificationService?method=receiveNotificationsAndSendMail(${body})")
+            .id("notificationRoute");
     }
 
 }

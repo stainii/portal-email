@@ -35,7 +35,7 @@ public class PortalNotificationsEmailPluginEndToEndTest {
     private GreenMail smtpServer;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         smtpServer = new GreenMail(new ServerSetup(2225, null, "smtp"));
         smtpServer.start();
     }

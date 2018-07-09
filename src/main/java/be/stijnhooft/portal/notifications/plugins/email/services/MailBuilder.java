@@ -1,6 +1,7 @@
 package be.stijnhooft.portal.notifications.plugins.email.services;
 
 import be.stijnhooft.portal.notifications.model.Notification;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
@@ -8,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
-import javax.inject.Inject;
 import java.util.Collection;
 
 @Service
@@ -25,7 +25,7 @@ public class MailBuilder {
     @Value("${mail.subject}")
     private String subject;
 
-    @Inject
+    @Autowired
     public MailBuilder(TemplateEngine templateEngine) {
         this.templateEngine = templateEngine;
     }

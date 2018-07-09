@@ -41,7 +41,7 @@ public class PortalNotificationsEmailPluginEndToEndTest {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         smtpServer.stop();
     }
 
@@ -63,7 +63,6 @@ public class PortalNotificationsEmailPluginEndToEndTest {
 
         //assert
         assertReceivedMessageContains("<!DOCTYPE html>\n" +
-            "\n" +
             "<html lang=\"en\" xmlns=\"http://www.w3.org/1999/xhtml\">\n" +
             "<head></head>\n" +
             "<body>\n" +

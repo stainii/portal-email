@@ -5,5 +5,5 @@ Email plugin for the Notifications module. This module transforms incoming
         notifications to an email and send it to the user.
 
 ## SMTP settings
-To configure your own smtp server, provide a file called *application.properties* in *src/main/resources/config/*.
-This file should contain (at least) the same properties as *_example_application.properties_for_secrets*, which can be found in the same folder.
+To configure your own smtp server, provide them in the *.env* file, next to docker-compose.yml.
+Check out [How to run this suite of micro services](https://github.com/stainii/portal#how-to-run-this-suite-of-micro-services)

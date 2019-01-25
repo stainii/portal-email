@@ -1,5 +1,5 @@
 # portal-notifications-email-plugin
-[![Build Status](http://portal-ci.westeurope.cloudapp.azure.com/buildStatus/icon?job=portal-notifications-email-plugin/master)](http://portal-ci.westeurope.cloudapp.azure.com/job/portal-notifications-email-plugin/job/master/)
+[![Build Status](https://server.stijnhooft.be/jenkins/buildStatus/icon?job=portal-notifications-email-plugin/master)](https://server.stijnhooft.be/jenkins/job/portal-notifications-email-plugin/job/master/)
 
 Email plugin for the Notifications module. This module transforms incoming
         notifications to an email and send it to the user.

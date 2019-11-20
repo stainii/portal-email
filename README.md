@@ -20,4 +20,4 @@ Check out [How to run this suite of micro services](https://github.com/stainii/p
 | EMAIL_PASSWORD | secret | The password user to authenticate at the SMTP server | required |
 | EMAIL_SMTP_AUTH | true | Is authentication to the SMTP server required? | required |
 | EMAIL_STARTTLS | true | Should TLS be used to communicate with the SMTP server? | required |
-| JAVA_OPTS_PORTAL_NOTIFICATIONS_EMAIL_PLUGIN | -Xmx400m -Xms400m | Java opts you want to pass to the JVM | optional
+| JAVA_OPTS_NOTIFICATIONS_EMAIL_PLUGIN | -Xmx400m -Xms400m | Java opts you want to pass to the JVM | optional

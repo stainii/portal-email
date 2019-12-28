@@ -21,3 +21,9 @@ Check out [How to run this suite of micro services](https://github.com/stainii/p
 | EMAIL_SMTP_AUTH | true | Is authentication to the SMTP server required? | required |
 | EMAIL_STARTTLS | true | Should TLS be used to communicate with the SMTP server? | required |
 | JAVA_OPTS_NOTIFICATIONS_EMAIL_PLUGIN | -Xmx400m -Xms400m | Java opts you want to pass to the JVM | optional
+
+### Release
+To release a module, this project makes use of the JGitflow plugin.
+More information can be found [here](https://gist.github.com/lemiorhan/97b4f827c08aed58a9d8).
+
+At the moment, releases are made on a local machine. No Jenkins job has been made (yet).

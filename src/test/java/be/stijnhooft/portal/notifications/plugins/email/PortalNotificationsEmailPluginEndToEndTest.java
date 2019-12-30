@@ -2,7 +2,7 @@ package be.stijnhooft.portal.notifications.plugins.email;
 
 import be.stijnhooft.portal.notifications.model.Notification;
 import be.stijnhooft.portal.notifications.model.NotificationAction;
-import be.stijnhooft.portal.notifications.model.NotificationUrgency;
+import be.stijnhooft.portal.notifications.model.PublishStrategy;
 import be.stijnhooft.portal.notifications.plugins.email.services.NotificationService;
 import com.icegreen.greenmail.util.GreenMail;
 import com.icegreen.greenmail.util.ServerSetup;
@@ -50,10 +50,10 @@ public class PortalNotificationsEmailPluginEndToEndTest {
         // data set
         Notification notification1 = new Notification(null, "Housagotchi",
             LocalDateTime.of(2018, 4, 29, 10, 0), "notification 1", "hurry up!",
-            new NotificationAction("http://www.stijnhooft.be", "Open it up", "internal"), NotificationUrgency.PUBLISH_IMMEDIATELY);
+            new NotificationAction("http://www.stijnhooft.be", "Open it up", "internal"), PublishStrategy.PUBLISH_IMMEDIATELY);
         Notification notification2 = new Notification(null, "Article writer",
             LocalDateTime.of(2018, 4, 29, 11, 13), "notification 2", "chill...",
-            new NotificationAction("http://portal.stijnhooft.be", "Do something about it", "internal"), NotificationUrgency.PUBLISH_IMMEDIATELY);
+            new NotificationAction("http://portal.stijnhooft.be", "Do something about it", "internal"), PublishStrategy.PUBLISH_IMMEDIATELY);
         List<Notification> notifications = Arrays.asList(notification1, notification2);
 
         // execute

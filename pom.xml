@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>be.stijnhooft</groupId>
-    <artifactId>portal-notifications-email-plugin</artifactId>
-    <version>1.0.3-SNAPSHOT</version>
+    <artifactId>portal-email</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>portal-notifications-email-plugin</name>
+    <name>portal-email</name>
     <description>
-        Email plugin for the Notifications module. This module transforms incoming
-        notifications to an email and send it to the user.
+        This module transforms incoming messages to an email and sends them to the user.
     </description>
     <url>http://portal.stijnhooft.be</url>
     <licenses>
@@ -26,9 +26,9 @@
         </developer>
     </developers>
     <scm>
-        <connection>scm:git:git://github.com/stainii/portal-notifications-email-plugin.git</connection>
-        <developerConnection>scm:git:ssh://github.com:stainii/portal-notifications-email-plugin.git</developerConnection>
-        <url>http://github.com/stainii/portal-notifications-email-plugin/tree/master</url>
+        <connection>scm:git:git://github.com/stainii/portal-email.git</connection>
+        <developerConnection>scm:git:ssh://github.com:stainii/portal-email.git</developerConnection>
+        <url>http://github.com/stainii/portal-email/tree/master</url>
     </scm>
     <issueManagement>
         <system>Trello</system>
@@ -51,11 +51,9 @@
 
         <!-- default parameters used in the application. Override these with a Maven profile -->
         <environment>dev</environment>
-        <rabbitmq-host>localhost</rabbitmq-host>
-        <rabbitmq-port>5672</rabbitmq-port>
 
         <!-- versions of dependencies -->
-        <java.version>11</java.version>
+        <java.version>14</java.version>
         <maven.resources.plugin.version>3.0.2</maven.resources.plugin.version>
         <maven.war.plugin.version>3.0.0</maven.war.plugin.version>
     </properties>
@@ -85,7 +83,6 @@
             <artifactId>portal-notifications-model</artifactId>
             <version>2.0.0</version>
         </dependency>
-
         <dependency>
             <groupId>be.stijnhooft</groupId>
             <artifactId>portal-model</artifactId>
@@ -119,6 +116,11 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-stream-binder-rabbit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
         </dependency>
 
         <dependency>
@@ -216,19 +218,12 @@
     <profiles>
         <profile>
             <id>production</id>
-            <properties>
-                <environment>production</environment>
-                <activemq-host>portal-activemq</activemq-host>
-                <activemq-port>61616</activemq-port>
-                <rabbitmq-host>portal-rabbitmq</rabbitmq-host>
-                <rabbitmq-port>5672</rabbitmq-port>
-            </properties>
             <build>
                 <plugins>
                     <plugin>
                         <groupId>com.spotify</groupId>
                         <artifactId>dockerfile-maven-plugin</artifactId>
-                       <version>1.4.13</version>
+                        <version>1.4.13</version>
                         <executions>
                             <execution>
                                 <id>default</id>

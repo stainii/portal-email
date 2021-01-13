@@ -1,9 +1,9 @@
-package be.stijnhooft.portal.notifications.plugins.email;
+package be.stijnhooft.portal.email;
 
+import be.stijnhooft.portal.email.notifications.NotificationService;
 import be.stijnhooft.portal.notifications.model.Notification;
 import be.stijnhooft.portal.notifications.model.NotificationAction;
 import be.stijnhooft.portal.notifications.model.PublishStrategy;
-import be.stijnhooft.portal.notifications.plugins.email.services.NotificationService;
 import com.icegreen.greenmail.util.GreenMail;
 import com.icegreen.greenmail.util.ServerSetup;
 import org.junit.After;
@@ -27,7 +27,7 @@ import static org.junit.Assert.assertEquals;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @TestPropertySource("classpath:application-test.properties")
-public class PortalNotificationsEmailPluginEndToEndTest {
+public class NotificationsE2ETest {
 
     @Inject
     private NotificationService notificationService;

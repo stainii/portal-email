@@ -1,4 +1,4 @@
-package be.stijnhooft.portal.notifications.plugins.email.services;
+package be.stijnhooft.portal.email.notifications;
 
 import be.stijnhooft.portal.notifications.model.Notification;
 import lombok.extern.slf4j.Slf4j;
@@ -15,21 +15,21 @@ import java.util.Collection;
 @Slf4j
 public class NotificationService {
 
-    private final MailBuilder mailBuilder;
+    private final NotificationMailBuilder notificationMailBuilder;
     private final JavaMailSender mailSender;
 
     @Autowired
-    public NotificationService(MailBuilder mailBuilder, JavaMailSender mailSender) {
-        this.mailBuilder = mailBuilder;
+    public NotificationService(NotificationMailBuilder notificationMailBuilder, JavaMailSender mailSender) {
+        this.notificationMailBuilder = notificationMailBuilder;
         this.mailSender = mailSender;
     }
 
     public void receiveNotificationsAndSendMail(Collection<Notification> notifications) {
-        MimeMessagePreparator mail = mailBuilder.build(notifications);
+        MimeMessagePreparator mail = notificationMailBuilder.build(notifications);
         mailSender.send(mail);
 
-        log.info("Sent mail for " + notifications.size() + " notifications.");
-        log.debug(notifications.toString());
+        log.info("Sent mail for {} notifications.", notifications.size());
+        log.debug("{}", notifications);
     }
 
 }

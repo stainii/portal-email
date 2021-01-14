@@ -1,4 +1,4 @@
-package be.stijnhooft.portal.notifications.plugins.email;
+package be.stijnhooft.portal.email;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;

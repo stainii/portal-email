@@ -1,20 +1,18 @@
-package be.stijnhooft.portal.notifications.plugins.email;
+package be.stijnhooft.portal.email;
 
+import be.stijnhooft.portal.email.notifications.NotificationService;
 import be.stijnhooft.portal.notifications.model.Notification;
 import be.stijnhooft.portal.notifications.model.NotificationAction;
 import be.stijnhooft.portal.notifications.model.PublishStrategy;
-import be.stijnhooft.portal.notifications.plugins.email.services.NotificationService;
 import com.icegreen.greenmail.util.GreenMail;
 import com.icegreen.greenmail.util.ServerSetup;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.inject.Inject;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.IOException;
@@ -22,25 +20,24 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 @TestPropertySource("classpath:application-test.properties")
-public class PortalNotificationsEmailPluginEndToEndTest {
+public class NotificationsE2ETest {
 
-    @Inject
+    @Autowired
     private NotificationService notificationService;
 
     private GreenMail smtpServer;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         smtpServer = new GreenMail(new ServerSetup(2225, null, "smtp"));
         smtpServer.start();
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
         smtpServer.stop();
     }

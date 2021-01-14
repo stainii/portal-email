@@ -1,8 +1,25 @@
-# portal-notifications-email-plugin
-[![Build Status](https://server.stijnhooft.be/jenkins/buildStatus/icon?job=portal-notifications-email-plugin/master)](https://server.stijnhooft.be/jenkins/job/portal-notifications-email-plugin/job/master/)
+# portal-email
+[![Build Status](https://server.stijnhooft.be/jenkins/buildStatus/icon?job=portal-email/master)](https://server.stijnhooft.be/jenkins/job/portal-email/job/master/)
 
-Email plugin for the Notifications module. This module transforms incoming
-        notifications to an email and send it to the user.
+This module transforms incoming messages to an email and sends them to the user.
+
+## How to send an email with this project?
+1. Send messages to a topic, for example the generic event topic.
+1. Create or extend a topic listener to receive the message
+1. Transform your message into a mail using a MailBuilder
+1. Use the JavaMailSender to send the mail
+
+## Structure of the project
+The app is split into **packages per subject**. 
+* If your messages arrive at the **(generic) events** topic, the classes in the events package pick up these messages and pass them to the correct service. These services are defined in their own package, per subject.
+  * For example: an event from the Activity microservice arrives at the event topic.
+    * It gets picked up in the events package.
+    * Then, it gets passed to the services in the activities package.
+    
+
+* If you have a specific, **separate queue/topic for your messages**, create a new package which reads from this queue and sends the mail
+  * For example: notifications arrive at the notifications topic. 
+    * The code for receiving the message and sending the mail is put in the notifications package.
 
 ## SMTP settings
 To configure your own smtp server, provide them in the *.env* file, next to docker-compose.yml.
@@ -11,16 +28,19 @@ Check out [How to run this suite of micro services](https://github.com/stainii/p
 ## Environment variables
 | Name | Example value | Description | Required? |
 | ---- | ------------- | ----------- | -------- |
-| EMAIL_RECIPIENT | myemail@example.com | The email address of the receiver of the notifications | required |
-| EMAIL_SENDER | mysender@example.com | The email address that's used to send notifications emails | required |
-| EMAIL_SUBJECT | You've got a notification! | The subject of the notification email | required |
+| EMAIL_RECIPIENT | myemail@example.com | The email address of the receiver of the emails | required |
+| EMAIL_SENDER | mysender@example.com | The email address that's used to send emails | required |
 | EMAIL_HOST | smtp.gmail.com | The hostname of the SMTP server | required |
 | EMAIL_PORT | 992 | The port of the SMTP server | required
 | EMAIL_USERNAME | stainii | The username used to authenticate at the SMTP server | required |
 | EMAIL_PASSWORD | secret | The password user to authenticate at the SMTP server | required |
 | EMAIL_SMTP_AUTH | true | Is authentication to the SMTP server required? | required |
 | EMAIL_STARTTLS | true | Should TLS be used to communicate with the SMTP server? | required |
-| JAVA_OPTS_NOTIFICATIONS_EMAIL_PLUGIN | -Xmx400m -Xms400m | Java opts you want to pass to the JVM | optional
+| RABBITMQ_HOST | portal-rabbitmq | The host of RabbitMQ | required
+| RABBITMQ_PORT | 5672 | The port of RabbitMQ | required
+| RABBITMQ_USERNAME | guest | The username for RabbitMQ | required
+| RABBITMQ_PASSWORD | guest | The username for RabbitMQ | required
+| JAVA_OPTS_EMAIL | -Xmx400m -Xms400m | Java opts you want to pass to the JVM | optional
 
 ### Release
 #### How to release
@@ -43,17 +63,17 @@ Therefore, make sure you have the following config in your Maven `settings.xml`;
 
 ````$xml
 <servers>
-		<server>
-			<id>docker.io</id>
-			<username>your_username</username>
-			<password>*************</password>
-		</server>
-		<server>
-			<id>portal-nexus-releases</id>
-			<username>your_username</username>
-            <password>*************</password>
-		</server>
-	</servers>
+    <server>
+        <id>docker.io</id>
+        <username>your_username</username>
+        <password>*************</password>
+    </server>
+    <server>
+        <id>portal-nexus-releases</id>
+        <username>your_username</username>
+        <password>*************</password>
+    </server>
+</servers>
 ````
 * docker.io points to the Docker Hub.
 * portal-nexus-releases points to my personal Nexus (see `<distributionManagement>` in the project's `pom.xml`)

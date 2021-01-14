@@ -1,7 +1,6 @@
-package be.stijnhooft.portal.notifications.plugins.email.messaging;
+package be.stijnhooft.portal.email.notifications;
 
 import be.stijnhooft.portal.notifications.model.Notification;
-import be.stijnhooft.portal.notifications.plugins.email.services.NotificationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
@@ -24,7 +23,7 @@ public class NotificationListener {
 
     @StreamListener(NotificationTopic.INPUT)
     public void log(List<Notification> notifications) {
-        log.info("Received notifications for which a mail needs to be sent");
+        log.info("Received {} notifications for which a mail needs to be sent", notifications.size());
         log.debug(notifications.toString());
         notificationService.receiveNotificationsAndSendMail(notifications);
     }

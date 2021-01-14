@@ -1,4 +1,4 @@
-package be.stijnhooft.portal.notifications.plugins.email.services;
+package be.stijnhooft.portal.email.notifications;
 
 import be.stijnhooft.portal.notifications.model.Notification;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import org.thymeleaf.context.Context;
 import java.util.Collection;
 
 @Service
-public class MailBuilder {
+public class NotificationMailBuilder {
 
     private TemplateEngine templateEngine;
 
@@ -22,11 +22,8 @@ public class MailBuilder {
     @Value("${mail.sender}")
     private String sender;
 
-    @Value("${mail.subject}")
-    private String subject;
-
     @Autowired
-    public MailBuilder(TemplateEngine templateEngine) {
+    public NotificationMailBuilder(TemplateEngine templateEngine) {
         this.templateEngine = templateEngine;
     }
 
@@ -35,7 +32,7 @@ public class MailBuilder {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
             messageHelper.setFrom(sender);
             messageHelper.setTo(recipient);
-            messageHelper.setSubject(subject);
+            messageHelper.setSubject("Notifications from the portal");
             messageHelper.setText(buildContent(notifications), true);
         };
     }
@@ -43,7 +40,7 @@ public class MailBuilder {
     private String buildContent(Collection<Notification> notifications) {
         Context context = new Context();
         context.setVariable("notifications", notifications);
-        return templateEngine.process("mail-template", context);
+        return templateEngine.process("notifications", context);
     }
 
 }

@@ -23,7 +23,7 @@
 <div id="header" style="background: #5f9fdf;">&nbsp;</div>
 <div id="main" style="margin: 30px auto; width: 80%; min-height: 300px; background-color:white;">
     <div style="padding-top: 15px; padding-bottom: 15px; text-align: center" th:each="event : ${events}">
-        <img th:src="${event.data['photo']}" style="max-width: 320px; display: inline-block">
+        <img th:if="${event.data['photo']}" th:src="${event.data['photo']}" style="max-width: 320px; display: inline-block">
         <h1 style="margin: 5px 20px;" th:text="${event.data['name']}">Name</h1>
         <p style="margin: 5px 20px;" th:text="${event.data['description']}">Description</p>
     </div>

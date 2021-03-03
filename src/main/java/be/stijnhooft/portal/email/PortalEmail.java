@@ -6,10 +6,10 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @SpringBootApplication
 @EnableEurekaClient
-public class PortalEmailApplication {
+public class PortalEmail {
 
     public static void main(String[] args) {
-        SpringApplication.run(PortalEmailApplication.class, args);
+        SpringApplication.run(PortalEmail.class, args);
     }
 
 }

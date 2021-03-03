@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 @TestPropertySource("classpath:application-test.properties")
-public class NotificationsE2ETest {
+public class NotificationsIntegrationTest {
 
     @Autowired
     private NotificationService notificationService;

@@ -1,9 +1,9 @@
 package be.stijnhooft.portal.email;
 
 import be.stijnhooft.portal.email.notifications.NotificationService;
-import be.stijnhooft.portal.notifications.model.Notification;
-import be.stijnhooft.portal.notifications.model.NotificationAction;
-import be.stijnhooft.portal.notifications.model.PublishStrategy;
+import be.stijnhooft.portal.model.notification.Notification;
+import be.stijnhooft.portal.model.notification.NotificationAction;
+import be.stijnhooft.portal.model.notification.PublishStrategy;
 import com.icegreen.greenmail.util.GreenMail;
 import com.icegreen.greenmail.util.ServerSetup;
 import org.junit.jupiter.api.AfterEach;

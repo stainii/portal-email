@@ -2,7 +2,6 @@ package be.stijnhooft.portal.email.notifications;
 
 import be.stijnhooft.portal.model.notification.Notification;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
@@ -18,7 +17,6 @@ public class NotificationService {
     private final NotificationMailBuilder notificationMailBuilder;
     private final JavaMailSender mailSender;
 
-    @Autowired
     public NotificationService(NotificationMailBuilder notificationMailBuilder, JavaMailSender mailSender) {
         this.notificationMailBuilder = notificationMailBuilder;
         this.mailSender = mailSender;

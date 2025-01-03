@@ -1,7 +1,6 @@
 package be.stijnhooft.portal.email.activities;
 
 import be.stijnhooft.portal.model.domain.Event;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
@@ -22,7 +21,6 @@ public class ActivityMailBuilder {
     @Value("${mail.sender}")
     private String sender;
 
-    @Autowired
     public ActivityMailBuilder(TemplateEngine templateEngine) {
         this.templateEngine = templateEngine;
     }

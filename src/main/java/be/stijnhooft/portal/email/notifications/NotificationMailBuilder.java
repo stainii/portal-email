@@ -1,7 +1,6 @@
 package be.stijnhooft.portal.email.notifications;
 
 import be.stijnhooft.portal.model.notification.Notification;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
@@ -22,7 +21,6 @@ public class NotificationMailBuilder {
     @Value("${mail.sender}")
     private String sender;
 
-    @Autowired
     public NotificationMailBuilder(TemplateEngine templateEngine) {
         this.templateEngine = templateEngine;
     }

@@ -57,14 +57,16 @@ public class NotificationsIntegrationTest {
         notificationService.receiveNotificationsAndSendMail(notifications);
 
         //assert
-        assertReceivedMessageContains("<!DOCTYPE html>\n" +
-            "<html lang=\"en\" xmlns=\"http://www.w3.org/1999/xhtml\">\n" +
-            "<head></head>\n" +
-            "<body>\n" +
-            "<h1>Template</h1>\n" +
-            "<span>hurry up!</span>\n" +
-            "</body>\n" +
-            "</html>\n");
+        assertReceivedMessageContains("""
+            <!DOCTYPE html>
+            <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+            <head></head>
+            <body>
+            <h1>Template</h1>
+            <span>hurry up!</span>
+            </body>
+            </html>
+            """);
     }
 
     private void assertReceivedMessageContains(String expected) throws IOException, MessagingException {

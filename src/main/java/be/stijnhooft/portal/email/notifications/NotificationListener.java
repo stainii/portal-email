@@ -2,14 +2,13 @@ package be.stijnhooft.portal.email.notifications;
 
 import be.stijnhooft.portal.model.notification.Notification;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.cloud.stream.annotation.EnableBinding;
-import org.springframework.cloud.stream.annotation.StreamListener;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
+import java.util.function.Consumer;
 
-@Component
-@EnableBinding(NotificationTopic.class)
+@Configuration
 @Slf4j
 public class NotificationListener {
 
@@ -19,11 +18,13 @@ public class NotificationListener {
         this.notificationService = notificationService;
     }
 
-    @StreamListener(NotificationTopic.INPUT)
-    public void log(List<Notification> notifications) {
-        log.info("Received {} notifications for which a mail needs to be sent", notifications.size());
-        log.debug(notifications.toString());
-        notificationService.receiveNotificationsAndSendMail(notifications);
+    @Bean
+    public Consumer<List<Notification>> notificationChannel() {
+        return notifications -> {
+            log.info("Received {} notifications for which a mail needs to be sent", notifications.size());
+            log.debug(notifications.toString());
+            notificationService.receiveNotificationsAndSendMail(notifications);
+        };
     }
 
 }

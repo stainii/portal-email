@@ -13,8 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -66,7 +66,7 @@ public class NotificationsIntegrationTest {
             <span>hurry up!</span>
             </body>
             </html>
-            """);
+            """.trim());
     }
 
     private void assertReceivedMessageContains(String expected) throws IOException, MessagingException {

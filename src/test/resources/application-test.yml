@@ -1,0 +1,14 @@
+spring:
+    mail:
+        properties:
+            mail.smtp:
+                starttls.enable: 'false'
+                auth: 'false'
+        host: localhost
+        username: ''
+        password: ''
+        port: '3025'
+eureka:
+    client:
+        fetch-registry: 'false'
+        register-with-eureka: 'false'

@@ -1,0 +1,63 @@
+management:
+    endpoints:
+        web:
+            exposure:
+                include: health,info,prometheus
+            cors:
+                allowed-origins: '*'
+                allowed-methods: '*'
+                allowed-headers: '*'
+spring:
+    cloud:
+        stream:
+            bindings:
+                eventChannel-in-0:
+                    destination: eventTopic
+                    content-type: application/json
+                notificationChannel-in-0:
+                    content-type: application/json
+                    destination: notificationTopic
+            binders:
+                rabbit:
+                    environment:
+                        spring:
+                            rabbitmq:
+                                password: guest
+                                username: guest
+                                port: '5672'
+                                host: localhost
+                    type: rabbit
+        function:
+            definition: notificationChannel;eventChannel
+    mail:
+        username: your_email
+        port: '587'
+        properties:
+            mail.smtp:
+                    starttls.enable: 'true'
+                    auth: 'true'
+        host: smtp.gmail.com
+        password: google_app_password
+    application:
+        name: email
+    jmx:
+        default-domain: email
+eureka:
+    client:
+        fetch-registry: 'false'
+        register-with-eureka: 'false'
+        service-url:
+            defaultZone: http://localhost:8761/eureka
+    instance:
+        hostname: email
+        prefer-ip-address: 'false'
+server:
+    port: '2004'
+mail:
+    recipient: stijnhooft@gmail.com
+    sender: notifications@stijnhooft.be
+logging:
+    level:
+        org:
+            springframework:
+                integration: DEBUG

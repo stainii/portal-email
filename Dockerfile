@@ -1,4 +1,4 @@
-FROM adoptopenjdk:14-jre-hotspot
+FROM eclipse-temurin:21-alpine
 VOLUME /tmp
 ARG JAR_FILE
 ADD ${JAR_FILE} app.jar

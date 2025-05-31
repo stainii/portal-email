@@ -42,7 +42,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.3.7</version>
+        <version>3.4.6</version>
     </parent>
 
     <properties>
@@ -50,7 +50,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>21</java.version>
         <maven.resources.plugin.version>3.0.2</maven.resources.plugin.version>
-        <spring-cloud-dependencies.version>2023.0.4</spring-cloud-dependencies.version>
+        <spring-cloud-dependencies.version>2024.0.1</spring-cloud-dependencies.version>
         <lombok.version>1.18.36</lombok.version>
         <greenmail.version>2.0.1</greenmail.version>
     </properties>
